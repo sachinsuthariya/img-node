@@ -77,7 +77,6 @@ exports.signUp = async (req, res) => {
 
 
 exports.signIn = async (req, res) => {
-    console.log("req.body", req.body);
     const email = req.body.email.toLowerCase().trim();
     try {
         const isUser = await userUtils.login(model.userModel, {
