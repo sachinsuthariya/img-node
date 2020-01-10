@@ -1,0 +1,2 @@
+//imports
+require('./config/app');
