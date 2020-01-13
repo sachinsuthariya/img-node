@@ -24,12 +24,12 @@ module.exports = {
         verifyUser: 'email-user-verify'
     },
 
-    userStatus: {
+    status: {
         active: 'Active',
         inActive: 'Inactive'
     },
 
     socketEvents: {
-        connection: "connection"    
+        connection: "connection"
     }
 };

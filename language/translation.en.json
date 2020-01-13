@@ -20,5 +20,10 @@
     "URL_NOT_FOUND": "URL not found.",
     "NO_DATA_FOUND": "No data found",
     "ACC_NOT_VARIFIED": "Please verify account first.",
-    "ACC_DEACTIVATED": "Your account is deactivated."
+    "ACC_DEACTIVATED": "Your account is deactivated.",
+    "REQ_FILE": "Please choose file",
+    "REQ_FILEPATH": "File path is required",
+    "REQ_CATEGORY": "Please select category",
+    "REQ_SUBCATEGORY": "Please select sub category",
+    "FILE_UPLOAD_FAIL": "Try again! File upload failed"
 }

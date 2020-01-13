@@ -64,6 +64,14 @@ validateCtr.isAlphaNumeric = (input) => {
     return false;
 }
 
+// validateCtr.imageFilter = (req, file, cb) => {
+//     // accept images only
+//     if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
+//         return false;
+//     }
+//     return true;
+// }
+
 // chech the value is empty or not
 validateCtr.notEmpty = str => _.isNumber(str) || (!_.isEmpty(str) && !(str.trim() === ''));
 

@@ -24,7 +24,7 @@ router.use([(req, res, next) => {
 }, middleware.isAuthenticate]);
 
 //routes for user controller
-router.get("/", userController.index)
+// router.get("/", userController.index)
 router.post("/signUp", userController.signUp);
 router.post("/signIn", userController.signIn);
 router.post("/verify", userController.verifyAccount);

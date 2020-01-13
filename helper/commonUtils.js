@@ -4,6 +4,7 @@ const path = require("path");
 const EmailTemplate = require("email-templates-v2").EmailTemplate;
 // const fs = require("fs");
 const logger = require("./logger");
+const multer = require('multer');
 
 // variables
 const saltRound = 10;
@@ -20,6 +21,25 @@ const transporter = nodeMailer.createTransport({
         pass: process.env.SMTP_PASSWORD
     }
 });
+
+// file upload
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, __dirname + '../public/uploads/images');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '_' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+const field = "file";
+helper.upload = multer({
+    storage: storage
+}).single(field);
+// .array("imgUploader", 3); //Field name and max count
+
+// end image upload
+
 
 // send mail
 helper.sendMail = (to, templateName, data, isBcc) => {
@@ -68,5 +88,8 @@ helper.decrypt = (value, hash) => {
     return bcrypt.compare(value, hash);
 };
 
+// helper.uploadFile = (field) => {
+
+// }
 
 module.exports = helper;

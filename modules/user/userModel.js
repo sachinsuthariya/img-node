@@ -3,7 +3,7 @@ const validate = require("../../helper/validation");
 const helper = require("../../helper/commonUtils");
 const l10n = require("jm-ez-l10n");
 const {
-    userStatus
+    status
 } = require("../../helper/constant");
 
 const userSchema = mongoose.Schema({
@@ -43,7 +43,7 @@ const userSchema = mongoose.Schema({
         type: String,
         minlength: 5,
         maxlength: 10,
-        default: userStatus.inActive
+        default: status.inActive
     }
 });
 

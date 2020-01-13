@@ -7,7 +7,7 @@ const userUtils = require("./userUtils");
 const {
     resStatusCode,
     ejsTemplate,
-    userStatus
+    status
 } = require("../../helper/constant"); //common data
 const logger = require("../../helper/logger");
 
@@ -93,7 +93,7 @@ exports.signIn = async (req, res) => {
                 return res.status(resStatusCode.error.unauthorized).json(response);
             }
 
-            if (isUser.status == userStatus.inActive) {
+            if (isUser.status == status.inActive) {
                 const response = {
                     success: false,
                     message: req.t("ACC_DEACTIVATED")
@@ -150,66 +150,6 @@ exports.signIn = async (req, res) => {
     }
 }
 
-// exports.signIn = async (req, res) => {
-//     // console.log("req.body", req.body);
-//     const email = req.body.email.toLowerCase().trim();
-//     try {
-//         const isUser = await userUtils.login(model.userModel, {
-//             email: email
-//         });
-
-//         if (isUser) {
-
-//             if (!isUser.varified) {
-//                 const response = {
-//                     success: false,
-//                     message: req.t("ACC_NOT_VARIFIED")
-//                 };
-//                 return res.status(resStatusCode.error.unauthorized).json(response);
-//             }
-
-//             if (isUser.status == userStatus.inActive) {
-//                 const response = {
-//                     success: false,
-//                     message: req.t("ACC_DEACTIVATED")
-//                 };
-//                 return res.status(resStatusCode.error.unauthorized).json(response);
-//             }
-
-//             const password = await helper.decrypt(req.body.password, isUser.password);
-
-//             if (password) {
-//                 const authToken = await jwtUtils.genToken({
-//                     data: email
-//                 });
-//                 const response = {
-//                     success: true,
-//                     message: req.t("LOGIN_SUCCESS"),
-//                     body: {
-//                         id: isUser.id,
-//                         email: email,
-//                         token: authToken
-//                     }
-//                 };
-//                 return res.status(resStatusCode.success).json(response);
-//             }
-//         } else {
-//             const response = {
-//                 success: false,
-//                 err: req.t("LOGIN_FAIL"),
-//                 message: req.t("INVALID_AUTH")
-//             };
-//             return res.status(resStatusCode.error.unauthorized).json(response);
-//         }
-//     } catch (err) {
-//         const response = {
-//             success: false,
-//             err: err.message,
-//             message: req.t("LOGIN_FAIL")
-//         };
-//         return res.status(resStatusCode.error.internalServerError).json(response);
-//     }
-// }
 
 exports.verifyAccount = async (req, res) => {
     try {
@@ -233,7 +173,7 @@ exports.verifyAccount = async (req, res) => {
 
         const updateObj = {
             varified: true,
-            status: userStatus.active
+            status: status.active
         };
 
         const isVarify = await mongoUtils.findAndUpdate(model.userModel, filterObj, updateObj);
@@ -286,12 +226,4 @@ exports.getUserList = async (req, res) => {
         };
         return res.status(resStatusCode.error.internalServerError).json(response);
     }
-}
-
-exports.index = (req, res) => {
-    return res.sendFile('/home/sachinsuthariya/Videos/project/nodesetup/templates/index.html');
-}
-
-exports.login = (req, res) => {
-    console.log("req body", req.body);
 }
